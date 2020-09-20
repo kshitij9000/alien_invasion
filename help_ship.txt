@@ -1,0 +1,7 @@
+# self.image.set_colorkey()
+# used to remove the background colour of the image
+# neeed 1 positional argument that is the rgb value of the  colour that is in the background of image not window
+needed only when the color of pygame windows is different than that of the image
+since I am using grey theme I will not use self.bg_cp;pr and self.image.set_colorkey()
+self.bg_color = (230, 230, 230)
+self.image.set_colorkey(self.bg_color)
