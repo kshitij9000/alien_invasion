@@ -4,6 +4,7 @@ import pygame
 # we use pygame module to make the game.
 from setting import Setting
 from ship import Ship
+from bullets import Bullet
 
 
 class AlienInvasion:
@@ -20,12 +21,14 @@ class AlienInvasion:
             (self.setting.screen_width, self.setting.screen_height))
         pygame.display.set_caption("Alien Invasion")
         self.ship = Ship(self)
+        self.bullet = pygame.sprite.Group()
 
     def run_game(self):
         """ Start the main loop of the game. """
         while True:
             self._check_events()
             self.ship.update()
+            self.bullet.update()
             self._update_screen()
 
     def _check_events(self):
@@ -44,6 +47,8 @@ class AlienInvasion:
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = True
+        elif event.key == pygame.K_SPACE:
+            self._fire_bullet()
 
     def _check_keyup_events(self, event):
         """ Responding to key releases. """
@@ -54,10 +59,17 @@ class AlienInvasion:
         elif event.key == pygame.K_q:
             sys.exit()
 
+    def _fire_bullet(self):
+        """ Create a new bullet and add it to the bullets group. """
+        new_bullet = Bullet(self)
+        self.bullet.add(new_bullet)
+
     def _update_screen(self):
         """ Updates images in the screen, and flip to new screen. """
         self.screen.fill(self.setting.bg_color)
         self.ship.blitme()
+        for bullet in self.bullet.sprites():
+            bullet.draw_bullet()
         pygame.display.flip()
 
 
