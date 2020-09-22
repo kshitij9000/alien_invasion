@@ -80,9 +80,19 @@ class AlienInvasion:
 
     def _create_fleet(self):
         """ Create the flit of aliens. """
-        # Make a alien.
+        # Make a alien and find the number of aliens in the row
         alien = Alien(self)
-        self.aliens.add(alien)
+        alien_width = alien.rect.width
+        available_space_x = self.setting.screen_width - (2 * alien_width)
+        number_alien_x = available_space_x // (2 * alien_width)
+
+        # create the first row of aliens.
+        for alien_number in range(number_alien_x):
+            # create an alien and place it in row
+            alien = Alien(self)
+            alien_x = alien_width + 2 * alien_width * alien_number
+            alien.rect.x = alien_x
+            self.aliens.add(alien)
 
     def _update_screen(self):
         """ Updates images in the screen, and flip to new screen. """
