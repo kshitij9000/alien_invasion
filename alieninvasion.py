@@ -64,6 +64,7 @@ class AlienInvasion:
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
         if button_clicked and not self.stats.game_active:
             # Reset game status
+            self.setting.initialize_dynamic_setting()
             self.stats.reset_stats()
             self.stats.game_active = True
 
@@ -121,6 +122,7 @@ class AlienInvasion:
             # Destroy existing bullets and create new fleet.
             self.bullet.empty()
             self._create_fleet()
+            self.setting.increase_speed()
 
     def _ship_hit(self):
         """ Respond to the ship being hit by and alien. """
