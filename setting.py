@@ -21,7 +21,7 @@ class Settings:
         self.fleet_drop_speed = 10
 
         # how quickly the game speed's up
-        self.speedup_scale = 1.5
+        self.speedup_scale = 1.1
 
         # how quickly does point value increases
         self.score_scale = 1.5
