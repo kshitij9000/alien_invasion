@@ -6,7 +6,8 @@ class GameStats:
         self.setting = ai_games.setting
         self.reset_stats()
         # high score should never be reset
-        self.high_score = 0
+        with open('highscore.txt') as f:
+            self.high_score = int(f.read())
 
         # start Alien Invasion in inactive state.
         self.game_active = False
